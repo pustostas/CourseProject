@@ -37,6 +37,7 @@
             this.courseProjectDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.casesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.casesTableAdapter = new CourseProject.CourseProjectDataSetTableAdapters.casesTableAdapter();
+            this.deleteButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.courseProjectDataSet)).BeginInit();
@@ -51,6 +52,7 @@
             this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.menuStrip1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.comboBox1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.deleteButton, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -70,6 +72,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 68);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(794, 295);
             this.dataGridView1.TabIndex = 0;
             // 
@@ -83,6 +86,10 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Справи",
@@ -92,7 +99,7 @@
             "Статті"});
             this.comboBox1.Location = new System.Drawing.Point(3, 28);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(794, 29);
             this.comboBox1.TabIndex = 2;
             this.comboBox1.Text = "Оберіть таблицю";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -115,6 +122,19 @@
             // casesTableAdapter
             // 
             this.casesTableAdapter.ClearBeforeFill = true;
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.deleteButton.AutoSize = true;
+            this.deleteButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.deleteButton.Location = new System.Drawing.Point(3, 392);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(95, 31);
+            this.deleteButton.TabIndex = 3;
+            this.deleteButton.Text = "Видалити";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // MainForm
             // 
@@ -146,6 +166,7 @@
         private CourseProjectDataSet courseProjectDataSet;
         private System.Windows.Forms.BindingSource casesBindingSource;
         private CourseProjectDataSetTableAdapters.casesTableAdapter casesTableAdapter;
+        private System.Windows.Forms.Button deleteButton;
     }
 }
 
