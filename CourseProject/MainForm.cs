@@ -14,6 +14,8 @@ namespace CourseProject
 {
     public partial class MainForm : Form
     {
+        public static bool isEdit;
+        public static int updateID;
         private SqlConnection sqlConnection = null;
         public MainForm()
         {
@@ -30,10 +32,7 @@ namespace CourseProject
             {
                 MessageBox.Show("Connection Open");
             }
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases", sqlConnection);
-            DataSet ds = new DataSet();
-            adapter.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
+            comboBox1.SelectedIndex = 0;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,6 +125,31 @@ namespace CourseProject
                 adapter.Fill(ds);
                 dataGridView1.DataSource = ds.Tables[0];
             }
+        }
+
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            isEdit = true;
+            updateID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+            var edit = new EditCasesForm();
+            edit.ShowDialog();
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases", sqlConnection);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds);
+            comboBox1.SelectedIndex = 0;
+            dataGridView1.DataSource = ds.Tables[0];
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            isEdit = false;
+            var edit = new EditCasesForm();
+            edit.ShowDialog();
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases", sqlConnection);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds);
+            comboBox1.SelectedIndex = 0;
+            dataGridView1.DataSource = ds.Tables[0];
         }
     }
 }
