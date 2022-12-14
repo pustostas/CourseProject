@@ -152,6 +152,18 @@ namespace CourseProject
                 comboBox1.SelectedIndex = 1;
                 dataGridView1.DataSource = ds.Tables[0];
             }
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                isEdit = true;
+                updateID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                var edit = new EditCitizensForm();
+                edit.ShowDialog();
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Citizens", sqlConnection);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                comboBox1.SelectedIndex = 1;
+                dataGridView1.DataSource = ds.Tables[0];
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -178,7 +190,14 @@ namespace CourseProject
                 dataGridView1.DataSource = ds.Tables[0];
             }else if(comboBox1.SelectedIndex == 2)
             {
-
+                isEdit = false;
+                var edit = new EditCitizensForm();
+                edit.ShowDialog();
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Citizens", sqlConnection);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                comboBox1.SelectedIndex = 1;
+                dataGridView1.DataSource = ds.Tables[0];
             }
             
         }

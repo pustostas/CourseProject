@@ -58,6 +58,12 @@
     <Compile Include="EditCasesForm.Designer.cs">
       <DependentUpon>EditCasesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditCitizensForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditCitizensForm.Designer.cs">
+      <DependentUpon>EditCitizensForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditCriminalsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EditCasesForm.resx">
       <DependentUpon>EditCasesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditCitizensForm.resx">
+      <DependentUpon>EditCitizensForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditCriminalsForm.resx">
       <DependentUpon>EditCriminalsForm.cs</DependentUpon>
