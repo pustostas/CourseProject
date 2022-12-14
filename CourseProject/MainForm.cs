@@ -129,27 +129,58 @@ namespace CourseProject
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            isEdit = true;
-            updateID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            var edit = new EditCasesForm();
-            edit.ShowDialog();
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases", sqlConnection);
-            DataSet ds = new DataSet();
-            adapter.Fill(ds);
-            comboBox1.SelectedIndex = 0;
-            dataGridView1.DataSource = ds.Tables[0];
+            if (comboBox1.SelectedIndex == 0)
+            {
+                isEdit = true;
+                updateID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                var edit = new EditCasesForm();
+                edit.ShowDialog();
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases", sqlConnection);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                comboBox1.SelectedIndex = 0;
+                dataGridView1.DataSource = ds.Tables[0];
+            }else if (comboBox1.SelectedIndex == 1)
+            {
+                isEdit = true;
+                updateID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                var edit = new EditCriminalsForm();
+                edit.ShowDialog();
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Criminals", sqlConnection);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                comboBox1.SelectedIndex = 1;
+                dataGridView1.DataSource = ds.Tables[0];
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            isEdit = false;
-            var edit = new EditCasesForm();
-            edit.ShowDialog();
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases", sqlConnection);
-            DataSet ds = new DataSet();
-            adapter.Fill(ds);
-            comboBox1.SelectedIndex = 0;
-            dataGridView1.DataSource = ds.Tables[0];
+            if (comboBox1.SelectedIndex == 0)
+            {
+                isEdit = false;
+                var edit = new EditCasesForm();
+                edit.ShowDialog();
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases", sqlConnection);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                comboBox1.SelectedIndex = 0;
+                dataGridView1.DataSource = ds.Tables[0];
+            }else if(comboBox1.SelectedIndex == 1)
+            {
+                isEdit = false;
+                var edit = new EditCriminalsForm();
+                edit.ShowDialog();
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Criminals", sqlConnection);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                comboBox1.SelectedIndex = 1;
+                dataGridView1.DataSource = ds.Tables[0];
+            }else if(comboBox1.SelectedIndex == 2)
+            {
+
+            }
+            
         }
     }
 }

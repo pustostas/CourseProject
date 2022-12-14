@@ -34,13 +34,13 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.deleteButton = new System.Windows.Forms.Button();
             this.updateButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.courseProjectDataSet = new CourseProject.CourseProjectDataSet();
             this.courseProjectDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.casesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.casesTableAdapter = new CourseProject.CourseProjectDataSetTableAdapters.casesTableAdapter();
-            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -76,6 +76,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 68);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(794, 295);
             this.dataGridView1.TabIndex = 0;
@@ -125,6 +126,19 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(794, 78);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
+            // updateButton
+            // 
+            this.updateButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.updateButton.AutoSize = true;
+            this.updateButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.updateButton.Location = new System.Drawing.Point(607, 23);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(108, 31);
+            this.updateButton.TabIndex = 4;
+            this.updateButton.Text = "Редагувати";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            // 
             // deleteButton
             // 
             this.deleteButton.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -138,18 +152,18 @@
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
-            // updateButton
+            // button1
             // 
-            this.updateButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.updateButton.AutoSize = true;
-            this.updateButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.updateButton.Location = new System.Drawing.Point(607, 23);
-            this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(108, 31);
-            this.updateButton.TabIndex = 4;
-            this.updateButton.Text = "Редагувати";
-            this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.AutoSize = true;
+            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(93, 23);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(78, 31);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Додати";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // courseProjectDataSet
             // 
@@ -169,19 +183,6 @@
             // casesTableAdapter
             // 
             this.casesTableAdapter.ClearBeforeFill = true;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.AutoSize = true;
-            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(93, 23);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 31);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Додати";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 

@@ -287,6 +287,7 @@
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.richTextBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "EditCasesForm";
             this.Text = "EditForm";
             this.Load += new System.EventHandler(this.EditCasesForm_Load);
