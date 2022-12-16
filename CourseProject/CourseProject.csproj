@@ -52,6 +52,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CourseProjectDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EditArticlesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditArticlesForm.Designer.cs">
+      <DependentUpon>EditArticlesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditCasesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EditArticlesForm.resx">
+      <DependentUpon>EditArticlesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditCasesForm.resx">
       <DependentUpon>EditCasesForm.cs</DependentUpon>
     </EmbeddedResource>
