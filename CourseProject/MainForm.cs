@@ -15,8 +15,10 @@ namespace CourseProject
     public partial class MainForm : Form
     {
         public static bool isEdit;
+        public static bool isStaff;
         public static int updateID;
         private SqlConnection sqlConnection = null;
+        
         public MainForm()
         {
             InitializeComponent();
@@ -154,6 +156,7 @@ namespace CourseProject
             }
             else if (comboBox1.SelectedIndex == 2)
             {
+                isStaff = false;
                 isEdit = true;
                 updateID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
                 var edit = new EditCitizensForm();
@@ -161,7 +164,20 @@ namespace CourseProject
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Citizens", sqlConnection);
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
-                comboBox1.SelectedIndex = 1;
+                comboBox1.SelectedIndex = 2;
+                dataGridView1.DataSource = ds.Tables[0];
+            }
+            else if (comboBox1.SelectedIndex == 3)
+            {
+                isStaff = true;
+                isEdit = true;
+                updateID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                var edit = new EditCitizensForm();
+                edit.ShowDialog();
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Staff", sqlConnection);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                comboBox1.SelectedIndex = 3;
                 dataGridView1.DataSource = ds.Tables[0];
             }
         }
@@ -188,18 +204,32 @@ namespace CourseProject
                 adapter.Fill(ds);
                 comboBox1.SelectedIndex = 1;
                 dataGridView1.DataSource = ds.Tables[0];
-            }else if(comboBox1.SelectedIndex == 2)
+            }
+            else if(comboBox1.SelectedIndex == 2)
             {
+                isStaff = false;
                 isEdit = false;
                 var edit = new EditCitizensForm();
                 edit.ShowDialog();
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Citizens", sqlConnection);
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
-                comboBox1.SelectedIndex = 1;
+                comboBox1.SelectedIndex = 2;
                 dataGridView1.DataSource = ds.Tables[0];
             }
-            
+            else if (comboBox1.SelectedIndex == 3)
+            {
+                isStaff = true;
+                isEdit = false;
+                var edit = new EditCitizensForm();
+                edit.ShowDialog();
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Staff", sqlConnection);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                comboBox1.SelectedIndex = 3;
+                dataGridView1.DataSource = ds.Tables[0];
+            }
+
         }
     }
 }

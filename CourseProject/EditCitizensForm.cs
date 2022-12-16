@@ -26,22 +26,44 @@ namespace CourseProject
             sqlConnection.Open();
             if (MainForm.isEdit)
             {
-                SqlCommand selectLastNameCommand = new SqlCommand($"SELECT last_name FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
-                textBox1.Text = (string)selectLastNameCommand.ExecuteScalar();
-                SqlCommand selectFirstNameCommand = new SqlCommand($"SELECT first_name FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
-                textBox2.Text = (string)selectFirstNameCommand.ExecuteScalar();
-                SqlCommand selectSurnameCommand = new SqlCommand($"SELECT surname FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
-                textBox3.Text = (string)selectSurnameCommand.ExecuteScalar();
-                SqlCommand selectAdressCommand = new SqlCommand($"SELECT adress FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
-                textBox4.Text = (string)selectAdressCommand.ExecuteScalar();
-                SqlCommand selectPassportCommand = new SqlCommand($"SELECT passport_number FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
-                textBox5.Text = (string)selectPassportCommand.ExecuteScalar();
-                SqlCommand selectPhoneCommand = new SqlCommand($"SELECT phone_number FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
-                textBox6.Text = (string)selectPhoneCommand.ExecuteScalar();
-                SqlCommand selectEmailCommand = new SqlCommand($"SELECT email FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
-                textBox7.Text = (string)selectEmailCommand.ExecuteScalar();
-                SqlCommand selectBirthCommand = new SqlCommand($"SELECT birth FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
-                dateTimePicker1.Value = (DateTime)selectBirthCommand.ExecuteScalar();
+                if (MainForm.isStaff)
+                {
+                    SqlCommand selectLastNameCommand = new SqlCommand($"SELECT last_name FROM staff WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox1.Text = (string)selectLastNameCommand.ExecuteScalar();
+                    SqlCommand selectFirstNameCommand = new SqlCommand($"SELECT first_name FROM staff WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox2.Text = (string)selectFirstNameCommand.ExecuteScalar();
+                    SqlCommand selectSurnameCommand = new SqlCommand($"SELECT surname FROM staff WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox3.Text = (string)selectSurnameCommand.ExecuteScalar();
+                    SqlCommand selectAdressCommand = new SqlCommand($"SELECT adress FROM staff WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox4.Text = (string)selectAdressCommand.ExecuteScalar();
+                    SqlCommand selectPassportCommand = new SqlCommand($"SELECT passport_number FROM staff WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox5.Text = (string)selectPassportCommand.ExecuteScalar();
+                    SqlCommand selectPhoneCommand = new SqlCommand($"SELECT phone_number FROM staff WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox6.Text = (string)selectPhoneCommand.ExecuteScalar();
+                    SqlCommand selectEmailCommand = new SqlCommand($"SELECT email FROM staff WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox7.Text = (string)selectEmailCommand.ExecuteScalar();
+                    SqlCommand selectBirthCommand = new SqlCommand($"SELECT birth FROM staff WHERE id = {MainForm.updateID}", sqlConnection);
+                    dateTimePicker1.Value = (DateTime)selectBirthCommand.ExecuteScalar();
+                 }
+                else
+                {
+                    SqlCommand selectLastNameCommand = new SqlCommand($"SELECT last_name FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox1.Text = (string)selectLastNameCommand.ExecuteScalar();
+                    SqlCommand selectFirstNameCommand = new SqlCommand($"SELECT first_name FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox2.Text = (string)selectFirstNameCommand.ExecuteScalar();
+                    SqlCommand selectSurnameCommand = new SqlCommand($"SELECT surname FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox3.Text = (string)selectSurnameCommand.ExecuteScalar();
+                    SqlCommand selectAdressCommand = new SqlCommand($"SELECT adress FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox4.Text = (string)selectAdressCommand.ExecuteScalar();
+                    SqlCommand selectPassportCommand = new SqlCommand($"SELECT passport_number FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox5.Text = (string)selectPassportCommand.ExecuteScalar();
+                    SqlCommand selectPhoneCommand = new SqlCommand($"SELECT phone_number FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox6.Text = (string)selectPhoneCommand.ExecuteScalar();
+                    SqlCommand selectEmailCommand = new SqlCommand($"SELECT email FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox7.Text = (string)selectEmailCommand.ExecuteScalar();
+                    SqlCommand selectBirthCommand = new SqlCommand($"SELECT birth FROM citizens WHERE id = {MainForm.updateID}", sqlConnection);
+                    dateTimePicker1.Value = (DateTime)selectBirthCommand.ExecuteScalar();
+                }
 
             }
         }
@@ -50,31 +72,64 @@ namespace CourseProject
         {
             if (MainForm.isEdit)
             {
-                SqlCommand insertCommand = new SqlCommand($"UPDATE Citizens SET last_name = @last_name, first_name = @first_name, surname = @surname, adress = @adress, passport_number = @passport_number, phone_number = @phone_number, email = @email, birth = @birth  WHERE id = {MainForm.updateID}", sqlConnection);
-                insertCommand.Parameters.AddWithValue("last_name", textBox1.Text);
-                insertCommand.Parameters.AddWithValue("first_name", textBox2.Text);
-                insertCommand.Parameters.AddWithValue("surname", textBox3.Text);
-                insertCommand.Parameters.AddWithValue("adress", textBox4.Text);
-                insertCommand.Parameters.AddWithValue("passport_number", textBox5.Text);
-                insertCommand.Parameters.AddWithValue("phone_number", textBox6.Text);
-                insertCommand.Parameters.AddWithValue("email", textBox7.Text);
-                insertCommand.Parameters.AddWithValue("birth", dateTimePicker1.Value);
-                insertCommand.ExecuteNonQuery();
-                Close();
+                if (MainForm.isStaff) {
+                    SqlCommand insertCommand = new SqlCommand($"UPDATE Staff SET last_name = @last_name, first_name = @first_name, surname = @surname, adress = @adress, passport_number = @passport_number, phone_number = @phone_number, email = @email, birth = @birth  WHERE id = {MainForm.updateID}", sqlConnection);
+                    insertCommand.Parameters.AddWithValue("last_name", textBox1.Text);
+                    insertCommand.Parameters.AddWithValue("first_name", textBox2.Text);
+                    insertCommand.Parameters.AddWithValue("surname", textBox3.Text);
+                    insertCommand.Parameters.AddWithValue("adress", textBox4.Text);
+                    insertCommand.Parameters.AddWithValue("passport_number", textBox5.Text);
+                    insertCommand.Parameters.AddWithValue("phone_number", textBox6.Text);
+                    insertCommand.Parameters.AddWithValue("email", textBox7.Text);
+                    insertCommand.Parameters.AddWithValue("birth", dateTimePicker1.Value);
+                    insertCommand.ExecuteNonQuery();
+                    Close();
+                }
+                else
+                {
+                    SqlCommand insertCommand = new SqlCommand($"UPDATE Citizens SET last_name = @last_name, first_name = @first_name, surname = @surname, adress = @adress, passport_number = @passport_number, phone_number = @phone_number, email = @email, birth = @birth  WHERE id = {MainForm.updateID}", sqlConnection);
+                    insertCommand.Parameters.AddWithValue("last_name", textBox1.Text);
+                    insertCommand.Parameters.AddWithValue("first_name", textBox2.Text);
+                    insertCommand.Parameters.AddWithValue("surname", textBox3.Text);
+                    insertCommand.Parameters.AddWithValue("adress", textBox4.Text);
+                    insertCommand.Parameters.AddWithValue("passport_number", textBox5.Text);
+                    insertCommand.Parameters.AddWithValue("phone_number", textBox6.Text);
+                    insertCommand.Parameters.AddWithValue("email", textBox7.Text);
+                    insertCommand.Parameters.AddWithValue("birth", dateTimePicker1.Value);
+                    insertCommand.ExecuteNonQuery();
+                    Close();
+                }
             }
             else
             {
-                SqlCommand insertCommand = new SqlCommand($"INSERT INTO citizens (last_name, first_name, surname, adress, passport_number, phone_number, email, birth) VALUES(@last_name, @first_name, @surname, @adress, @passport_number, @phone_number, @email, @birth)", sqlConnection);
-                insertCommand.Parameters.AddWithValue("last_name", textBox1.Text);
-                insertCommand.Parameters.AddWithValue("first_name", textBox2.Text);
-                insertCommand.Parameters.AddWithValue("surname", textBox3.Text);
-                insertCommand.Parameters.AddWithValue("adress", textBox4.Text);
-                insertCommand.Parameters.AddWithValue("passport_number", textBox5.Text);
-                insertCommand.Parameters.AddWithValue("phone_number", textBox6.Text);
-                insertCommand.Parameters.AddWithValue("email", textBox7.Text);
-                insertCommand.Parameters.AddWithValue("birth", dateTimePicker1.Value);
-                insertCommand.ExecuteNonQuery();
-                Close();
+                if (MainForm.isStaff)
+                {
+                    SqlCommand insertCommand = new SqlCommand($"INSERT INTO staff (last_name, first_name, surname, adress, passport_number, phone_number, email, birth) VALUES(@last_name, @first_name, @surname, @adress, @passport_number, @phone_number, @email, @birth)", sqlConnection);
+                    insertCommand.Parameters.AddWithValue("last_name", textBox1.Text);
+                    insertCommand.Parameters.AddWithValue("first_name", textBox2.Text);
+                    insertCommand.Parameters.AddWithValue("surname", textBox3.Text);
+                    insertCommand.Parameters.AddWithValue("adress", textBox4.Text);
+                    insertCommand.Parameters.AddWithValue("passport_number", textBox5.Text);
+                    insertCommand.Parameters.AddWithValue("phone_number", textBox6.Text);
+                    insertCommand.Parameters.AddWithValue("email", textBox7.Text);
+                    insertCommand.Parameters.AddWithValue("birth", dateTimePicker1.Value);
+                    insertCommand.ExecuteNonQuery();
+                    Close();
+                }
+                else
+                {
+                    SqlCommand insertCommand = new SqlCommand($"INSERT INTO citizens (last_name, first_name, surname, adress, passport_number, phone_number, email, birth) VALUES(@last_name, @first_name, @surname, @adress, @passport_number, @phone_number, @email, @birth)", sqlConnection);
+                    insertCommand.Parameters.AddWithValue("last_name", textBox1.Text);
+                    insertCommand.Parameters.AddWithValue("first_name", textBox2.Text);
+                    insertCommand.Parameters.AddWithValue("surname", textBox3.Text);
+                    insertCommand.Parameters.AddWithValue("adress", textBox4.Text);
+                    insertCommand.Parameters.AddWithValue("passport_number", textBox5.Text);
+                    insertCommand.Parameters.AddWithValue("phone_number", textBox6.Text);
+                    insertCommand.Parameters.AddWithValue("email", textBox7.Text);
+                    insertCommand.Parameters.AddWithValue("birth", dateTimePicker1.Value);
+                    insertCommand.ExecuteNonQuery();
+                    Close();
+                }
             }
         }
 
