@@ -12,13 +12,14 @@ using System.Data.SqlClient;
 
 namespace CourseProject
 {
+
     public partial class MainForm : Form
     {
         public static bool isEdit;
         public static bool isStaff;
         public static int updateID;
         private SqlConnection sqlConnection = null;
-        
+
         public MainForm()
         {
             InitializeComponent();
@@ -26,11 +27,11 @@ namespace CourseProject
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+
 
             sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CourseProject.Properties.Settings.CourseProjectConnectionString"].ConnectionString);
             sqlConnection.Open();
-            if(sqlConnection.State == ConnectionState.Open)
+            if (sqlConnection.State == ConnectionState.Open)
             {
                 MessageBox.Show("Connection Open");
             }
@@ -45,12 +46,30 @@ namespace CourseProject
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                 dataGridView1.DataSource = ds.Tables[0];
-            }else if(comboBox1.SelectedIndex == 1)
+                comboBox2.Items.Clear();
+                var dataSource = new List<SortList>();
+                dataSource.Add(new SortList() { Name = "Немає", Value = "0" });
+                dataSource.Add(new SortList() { Name = "Дата створення", Value = "1" });
+                dataSource.Add(new SortList() { Name = "Громадянин", Value = "2" });
+                this.comboBox2.DataSource = dataSource;
+                this.comboBox2.DisplayMember = "Name";
+                this.comboBox2.ValueMember = "Value";
+                this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            }
+            else if (comboBox1.SelectedIndex == 1)
             {
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Criminals", sqlConnection);
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                 dataGridView1.DataSource = ds.Tables[0];
+                var dataSource = new List<SortList>();
+                dataSource.Add(new SortList() { Name = "Немає", Value = "0" });
+                dataSource.Add(new SortList() { Name = "Прізвище", Value = "1" });
+                dataSource.Add(new SortList() { Name = "Кількість злочинів", Value = "2" });
+                this.comboBox2.DataSource = dataSource;
+                this.comboBox2.DisplayMember = "Name";
+                this.comboBox2.ValueMember = "Value";
+                this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             }
             else if (comboBox1.SelectedIndex == 2)
             {
@@ -58,6 +77,15 @@ namespace CourseProject
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                 dataGridView1.DataSource = ds.Tables[0];
+                var dataSource = new List<SortList>();
+                dataSource.Add(new SortList() { Name = "Немає", Value = "0" });
+                dataSource.Add(new SortList() { Name = "Прізвище", Value = "1" });
+                dataSource.Add(new SortList() { Name = "Кількість заяв", Value = "2" });
+                this.comboBox2.DataSource = dataSource;
+                this.comboBox2.DisplayMember = "Name";
+                this.comboBox2.ValueMember = "Value";
+                this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+
             }
             else if (comboBox1.SelectedIndex == 3)
             {
@@ -65,6 +93,15 @@ namespace CourseProject
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                 dataGridView1.DataSource = ds.Tables[0];
+                var dataSource = new List<SortList>();
+                dataSource.Add(new SortList() { Name = "Немає", Value = "0" });
+                dataSource.Add(new SortList() { Name = "Прізвище", Value = "1" });
+                dataSource.Add(new SortList() { Name = "Кількість заяв", Value = "2" });
+                this.comboBox2.DataSource = dataSource;
+                this.comboBox2.DisplayMember = "Name";
+                this.comboBox2.ValueMember = "Value";
+                this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+
             }
             else if (comboBox1.SelectedIndex == 4)
             {
@@ -72,6 +109,141 @@ namespace CourseProject
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                 dataGridView1.DataSource = ds.Tables[0];
+                var dataSource = new List<SortList>();
+                dataSource.Add(new SortList() { Name = "Немає", Value = "0" });
+                dataSource.Add(new SortList() { Name = "Назва", Value = "1" });
+                dataSource.Add(new SortList() { Name = "Номер", Value = "2" });
+                this.comboBox2.DataSource = dataSource;
+                this.comboBox2.DisplayMember = "Name";
+                this.comboBox2.ValueMember = "Value";
+                this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            }
+        }
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex == 0)
+            {
+                if (comboBox2.SelectedIndex == 0)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+                else if (comboBox2.SelectedIndex == 1)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases ORDER BY Creation", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+                else if (comboBox2.SelectedIndex == 2)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases ORDER BY citizen_name", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                if (comboBox2.SelectedIndex == 0)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM criminals", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+                else if (comboBox2.SelectedIndex == 1)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Criminals ORDER BY last_name", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+                else if (comboBox2.SelectedIndex == 2)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Criminals ORDER BY number_of_cases", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+            }
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                if (comboBox2.SelectedIndex == 0)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM citizens", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+                else if (comboBox2.SelectedIndex == 1)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Citizens ORDER BY last_name", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+                else if (comboBox2.SelectedIndex == 2)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Citizens ORDER BY number_of_cases", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+            
+            }
+            else if (comboBox1.SelectedIndex == 3)
+            {
+                if (comboBox2.SelectedIndex == 0)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM staff", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+                else if (comboBox2.SelectedIndex == 1)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM staff ORDER BY last_name", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+                else if (comboBox2.SelectedIndex == 2)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM staff ORDER BY number_of_cases", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+
+            }
+            else if (comboBox1.SelectedIndex == 4)
+            {
+                if (comboBox2.SelectedIndex == 0)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM articles", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+                else if (comboBox2.SelectedIndex == 1)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM articles ORDER BY name", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+                else if (comboBox2.SelectedIndex == 2)
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM articles ORDER BY id", sqlConnection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    dataGridView1.DataSource = ds.Tables[0];
+                }
+
             }
         }
 
@@ -142,7 +314,8 @@ namespace CourseProject
                 adapter.Fill(ds);
                 comboBox1.SelectedIndex = 0;
                 dataGridView1.DataSource = ds.Tables[0];
-            }else if (comboBox1.SelectedIndex == 1)
+            }
+            else if (comboBox1.SelectedIndex == 1)
             {
                 isEdit = true;
                 updateID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
@@ -206,7 +379,8 @@ namespace CourseProject
                 adapter.Fill(ds);
                 comboBox1.SelectedIndex = 0;
                 dataGridView1.DataSource = ds.Tables[0];
-            }else if(comboBox1.SelectedIndex == 1)
+            }
+            else if (comboBox1.SelectedIndex == 1)
             {
                 isEdit = false;
                 var edit = new EditCriminalsForm();
@@ -217,7 +391,7 @@ namespace CourseProject
                 comboBox1.SelectedIndex = 1;
                 dataGridView1.DataSource = ds.Tables[0];
             }
-            else if(comboBox1.SelectedIndex == 2)
+            else if (comboBox1.SelectedIndex == 2)
             {
                 isStaff = false;
                 isEdit = false;
@@ -254,6 +428,293 @@ namespace CourseProject
                 dataGridView1.DataSource = ds.Tables[0];
             }
 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex == 0)
+            {
+                if (comboBox2.SelectedIndex == 0)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                }
+                else if (comboBox2.SelectedIndex == 1)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases ORDER BY Creation", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases ORDER BY Creation DESC", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+
+                }
+                else if (comboBox2.SelectedIndex == 2)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases ORDER BY Citizen_name", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Cases ORDER BY Citizen_name DESC", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                }
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                if (comboBox2.SelectedIndex == 0)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Criminals", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Criminals", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                }
+                else if (comboBox2.SelectedIndex == 1)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Criminals ORDER BY Last_name", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Criminals ORDER BY Last_name DESC", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+
+                }
+                else if (comboBox2.SelectedIndex == 2)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Criminals ORDER BY number_of_cases", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Criminals ORDER BY number_of_cases DESC", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                }
+            }
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                if (comboBox2.SelectedIndex == 0)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Citizens", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Citizens", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                }
+                else if (comboBox2.SelectedIndex == 1)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Citizens ORDER BY Last_name", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Citizens ORDER BY Last_name DESC", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+
+                }
+                else if (comboBox2.SelectedIndex == 2)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Citizens ORDER BY number_of_cases", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Citizens ORDER BY number_of_cases DESC", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                }
+            
+                }
+            else if (comboBox1.SelectedIndex == 3)
+            {
+                if (comboBox2.SelectedIndex == 0)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM staff", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM staff", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                }
+                else if (comboBox2.SelectedIndex == 1)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM staff ORDER BY Last_name", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM staff ORDER BY Last_name DESC", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+
+                }
+                else if (comboBox2.SelectedIndex == 2)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM staff ORDER BY number_of_cases", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM staff ORDER BY number_of_cases DESC", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                }
+
+            }
+            else if (comboBox1.SelectedIndex == 4)
+            {
+                if (comboBox2.SelectedIndex == 0)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM articles", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM articles", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                }
+                else if (comboBox2.SelectedIndex == 1)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM articles ORDER BY name", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM articles ORDER BY name DESC", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+
+                }
+                else if (comboBox2.SelectedIndex == 2)
+                {
+                    if (checkBox1.Checked == false)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM articles ORDER BY id", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                    else if (checkBox1.Checked == true)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM articles ORDER BY id DESC", sqlConnection);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        dataGridView1.DataSource = ds.Tables[0];
+                    }
+                }
+
+            }
+        }
+        public class SortList
+        {
+            public string Name { get; set; }
+            public string Value { get; set; }
         }
     }
 }
