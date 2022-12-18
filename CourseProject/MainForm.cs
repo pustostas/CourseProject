@@ -46,7 +46,6 @@ namespace CourseProject
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                 dataGridView1.DataSource = ds.Tables[0];
-                comboBox2.Items.Clear();
                 var dataSource = new List<SortList>();
                 dataSource.Add(new SortList() { Name = "Немає", Value = "0" });
                 dataSource.Add(new SortList() { Name = "Дата створення", Value = "1" });
@@ -55,6 +54,9 @@ namespace CourseProject
                 this.comboBox2.DisplayMember = "Name";
                 this.comboBox2.ValueMember = "Value";
                 this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+                label2.Text = "Прізвище";
+                label3.Text = "Опис";
+
             }
             else if (comboBox1.SelectedIndex == 1)
             {
@@ -70,6 +72,8 @@ namespace CourseProject
                 this.comboBox2.DisplayMember = "Name";
                 this.comboBox2.ValueMember = "Value";
                 this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+                label2.Text = "Прізвище";
+                label3.Text = "Номер паспорту";
             }
             else if (comboBox1.SelectedIndex == 2)
             {
@@ -85,6 +89,8 @@ namespace CourseProject
                 this.comboBox2.DisplayMember = "Name";
                 this.comboBox2.ValueMember = "Value";
                 this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+                label2.Text = "Прізвище";
+                label3.Text = "Номер паспорту";
 
             }
             else if (comboBox1.SelectedIndex == 3)
@@ -101,6 +107,8 @@ namespace CourseProject
                 this.comboBox2.DisplayMember = "Name";
                 this.comboBox2.ValueMember = "Value";
                 this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+                label2.Text = "Прізвище";
+                label3.Text = "Номер паспорту";
 
             }
             else if (comboBox1.SelectedIndex == 4)
@@ -117,6 +125,8 @@ namespace CourseProject
                 this.comboBox2.DisplayMember = "Name";
                 this.comboBox2.ValueMember = "Value";
                 this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+                label2.Text = "Назва";
+                label3.Text = "Текст";
 
             }
         }
@@ -715,6 +725,49 @@ namespace CourseProject
         {
             public string Name { get; set; }
             public string Value { get; set; }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            switch (comboBox1.SelectedIndex) {
+                case 0:
+                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"citizen_name LIKE '%{textBox1.Text}%'";
+                    break;
+                case 1:
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"last_name LIKE '%{textBox1.Text}%'";
+                    break;
+                case 2:
+                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"last_name LIKE '%{textBox1.Text}%'";
+                    break;
+                case 3:
+                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"last_name LIKE '%{textBox1.Text}%'";
+                    break;
+                case 4:
+                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"name LIKE '%{textBox1.Text}%'";
+                    break;
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0:
+                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"description LIKE '%{textBox2.Text}%'";
+                    break;
+                case 1:
+                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"passport_number LIKE '%{textBox2.Text}%'";
+                    break;
+                case 2:
+                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"passport_number LIKE '%{textBox2.Text}%'";
+                    break;
+                case 3:
+                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"passport_number LIKE '%{textBox2.Text}%'";
+                    break;
+                case 4:
+                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"text LIKE '%{textBox2.Text}%'";
+                    break;
+            }
         }
     }
 }
