@@ -31,9 +31,15 @@
             this.components = new System.ComponentModel.Container();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.citizensBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.courseProjectDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.courseProjectDataSet = new CourseProject.CourseProjectDataSet();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.staffBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.criminalsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.articlesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,27 +47,22 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.courseProjectDataSet = new CourseProject.CourseProjectDataSet();
-            this.courseProjectDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.casesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.casesTableAdapter = new CourseProject.CourseProjectDataSetTableAdapters.casesTableAdapter();
-            this.citizensBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.citizensTableAdapter = new CourseProject.CourseProjectDataSetTableAdapters.citizensTableAdapter();
-            this.staffBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.staffTableAdapter = new CourseProject.CourseProjectDataSetTableAdapters.staffTableAdapter();
-            this.criminalsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.criminalsTableAdapter = new CourseProject.CourseProjectDataSetTableAdapters.criminalsTableAdapter();
-            this.articlesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.articlesTableAdapter = new CourseProject.CourseProjectDataSetTableAdapters.articlesTableAdapter();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.courseProjectDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.courseProjectDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.casesBindingSource)).BeginInit();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.citizensBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.courseProjectDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.courseProjectDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.staffBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.criminalsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.articlesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.casesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -85,6 +86,21 @@
             this.comboBox1.TabIndex = 2;
             this.comboBox1.ValueMember = "id";
             // 
+            // citizensBindingSource
+            // 
+            this.citizensBindingSource.DataMember = "citizens";
+            this.citizensBindingSource.DataSource = this.courseProjectDataSetBindingSource;
+            // 
+            // courseProjectDataSetBindingSource
+            // 
+            this.courseProjectDataSetBindingSource.DataSource = this.courseProjectDataSet;
+            this.courseProjectDataSetBindingSource.Position = 0;
+            // 
+            // courseProjectDataSet
+            // 
+            this.courseProjectDataSet.DataSetName = "CourseProjectDataSet";
+            this.courseProjectDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // comboBox2
             // 
             this.comboBox2.DataSource = this.staffBindingSource;
@@ -96,6 +112,11 @@
             this.comboBox2.Size = new System.Drawing.Size(401, 29);
             this.comboBox2.TabIndex = 3;
             this.comboBox2.ValueMember = "id";
+            // 
+            // staffBindingSource
+            // 
+            this.staffBindingSource.DataMember = "staff";
+            this.staffBindingSource.DataSource = this.courseProjectDataSetBindingSource;
             // 
             // comboBox3
             // 
@@ -109,6 +130,11 @@
             this.comboBox3.TabIndex = 4;
             this.comboBox3.ValueMember = "id";
             // 
+            // criminalsBindingSource
+            // 
+            this.criminalsBindingSource.DataMember = "criminals";
+            this.criminalsBindingSource.DataSource = this.courseProjectDataSetBindingSource;
+            // 
             // comboBox4
             // 
             this.comboBox4.DataSource = this.articlesBindingSource;
@@ -120,6 +146,11 @@
             this.comboBox4.Size = new System.Drawing.Size(401, 29);
             this.comboBox4.TabIndex = 5;
             this.comboBox4.ValueMember = "id";
+            // 
+            // articlesBindingSource
+            // 
+            this.articlesBindingSource.DataMember = "articles";
+            this.articlesBindingSource.DataSource = this.courseProjectDataSetBindingSource;
             // 
             // dateTimePicker1
             // 
@@ -189,16 +220,6 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "Стаття:";
             // 
-            // courseProjectDataSet
-            // 
-            this.courseProjectDataSet.DataSetName = "CourseProjectDataSet";
-            this.courseProjectDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // courseProjectDataSetBindingSource
-            // 
-            this.courseProjectDataSetBindingSource.DataSource = this.courseProjectDataSet;
-            this.courseProjectDataSetBindingSource.Position = 0;
-            // 
             // casesBindingSource
             // 
             this.casesBindingSource.DataMember = "cases";
@@ -208,37 +229,17 @@
             // 
             this.casesTableAdapter.ClearBeforeFill = true;
             // 
-            // citizensBindingSource
-            // 
-            this.citizensBindingSource.DataMember = "citizens";
-            this.citizensBindingSource.DataSource = this.courseProjectDataSetBindingSource;
-            // 
             // citizensTableAdapter
             // 
             this.citizensTableAdapter.ClearBeforeFill = true;
-            // 
-            // staffBindingSource
-            // 
-            this.staffBindingSource.DataMember = "staff";
-            this.staffBindingSource.DataSource = this.courseProjectDataSetBindingSource;
             // 
             // staffTableAdapter
             // 
             this.staffTableAdapter.ClearBeforeFill = true;
             // 
-            // criminalsBindingSource
-            // 
-            this.criminalsBindingSource.DataMember = "criminals";
-            this.criminalsBindingSource.DataSource = this.courseProjectDataSetBindingSource;
-            // 
             // criminalsTableAdapter
             // 
             this.criminalsTableAdapter.ClearBeforeFill = true;
-            // 
-            // articlesBindingSource
-            // 
-            this.articlesBindingSource.DataMember = "articles";
-            this.articlesBindingSource.DataSource = this.courseProjectDataSetBindingSource;
             // 
             // articlesTableAdapter
             // 
@@ -268,11 +269,24 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox1.Location = new System.Drawing.Point(596, 276);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(70, 25);
+            this.checkBox1.TabIndex = 15;
+            this.checkBox1.Text = "NULL";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // EditCasesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(602, 421);
+            this.ClientSize = new System.Drawing.Size(689, 421);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
@@ -291,13 +305,13 @@
             this.Name = "EditCasesForm";
             this.Text = "EditForm";
             this.Load += new System.EventHandler(this.EditCasesForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.courseProjectDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.courseProjectDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.casesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.citizensBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.courseProjectDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.courseProjectDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.staffBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.criminalsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.articlesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.casesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -331,5 +345,6 @@
         private CourseProjectDataSetTableAdapters.articlesTableAdapter articlesTableAdapter;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

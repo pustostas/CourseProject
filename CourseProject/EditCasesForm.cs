@@ -57,7 +57,14 @@ namespace CourseProject
                 insertCommand.Parameters.AddWithValue("description", richTextBox1.Text);
                 insertCommand.Parameters.AddWithValue("citizen_id", Convert.ToInt32(comboBox1.SelectedValue));
                 insertCommand.Parameters.AddWithValue("staff_id", Convert.ToInt32(comboBox2.SelectedValue));
-                insertCommand.Parameters.AddWithValue("criminals_id", Convert.ToInt32(comboBox3.SelectedValue));
+                if (checkBox1.Checked)
+                {
+                    insertCommand.Parameters.AddWithValue("criminals_id", DBNull.Value);
+                }
+                else
+                {
+                    insertCommand.Parameters.AddWithValue("criminals_id", Convert.ToInt32(comboBox3.SelectedValue));
+                }
                 insertCommand.Parameters.AddWithValue("articles_id", Convert.ToInt32(comboBox4.SelectedValue));
                 insertCommand.ExecuteNonQuery();
                 Close();
@@ -69,7 +76,14 @@ namespace CourseProject
                 insertCommand.Parameters.AddWithValue("description", richTextBox1.Text);
                 insertCommand.Parameters.AddWithValue("citizen_id", Convert.ToInt32(comboBox1.SelectedValue));
                 insertCommand.Parameters.AddWithValue("staff_id", Convert.ToInt32(comboBox2.SelectedValue));
-                insertCommand.Parameters.AddWithValue("criminals_id", Convert.ToInt32(comboBox3.SelectedValue));
+                if (checkBox1.Checked)
+                {
+                    insertCommand.Parameters.AddWithValue("criminals_id", DBNull.Value);
+                }
+                else
+                {
+                    insertCommand.Parameters.AddWithValue("criminals_id", Convert.ToInt32(comboBox3.SelectedValue));
+                }
                 insertCommand.Parameters.AddWithValue("articles_id", Convert.ToInt32(comboBox4.SelectedValue));
                 insertCommand.ExecuteNonQuery();
                 Close(); 
@@ -79,6 +93,11 @@ namespace CourseProject
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

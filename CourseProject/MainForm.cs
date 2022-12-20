@@ -18,6 +18,7 @@ namespace CourseProject
         public static bool isEdit;
         public static bool isStaff;
         public static int updateID;
+        public static int docID;
         private SqlConnection sqlConnection = null;
 
         public MainForm()
@@ -56,6 +57,9 @@ namespace CourseProject
                 this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
                 label2.Text = "Прізвище";
                 label3.Text = "Опис";
+                checkBox2.Text = "Без злочинця";
+                checkBox3.Show();
+                checkBox2.Show();
 
             }
             else if (comboBox1.SelectedIndex == 1)
@@ -74,6 +78,9 @@ namespace CourseProject
                 this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
                 label2.Text = "Прізвище";
                 label3.Text = "Номер паспорту";
+                checkBox2.Text = "Більше трьох справ";
+                checkBox3.Hide();
+                checkBox2.Show();
             }
             else if (comboBox1.SelectedIndex == 2)
             {
@@ -91,7 +98,9 @@ namespace CourseProject
                 this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
                 label2.Text = "Прізвище";
                 label3.Text = "Номер паспорту";
-
+                checkBox2.Text = "Більше трьох справ";
+                checkBox3.Hide();
+                checkBox2.Show();
             }
             else if (comboBox1.SelectedIndex == 3)
             {
@@ -109,6 +118,9 @@ namespace CourseProject
                 this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
                 label2.Text = "Прізвище";
                 label3.Text = "Номер паспорту";
+                checkBox2.Text = "Більше трьох справ";
+                checkBox3.Hide();
+                checkBox2.Show();
 
             }
             else if (comboBox1.SelectedIndex == 4)
@@ -127,6 +139,8 @@ namespace CourseProject
                 this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
                 label2.Text = "Назва";
                 label3.Text = "Текст";
+                checkBox3.Hide();
+                checkBox2.Hide();
 
             }
         }
@@ -734,11 +748,7 @@ namespace CourseProject
                     (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"citizen_name LIKE '%{textBox1.Text}%'";
                     break;
                 case 1:
-            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"last_name LIKE '%{textBox1.Text}%'";
-                    break;
                 case 2:
-                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"last_name LIKE '%{textBox1.Text}%'";
-                    break;
                 case 3:
                     (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"last_name LIKE '%{textBox1.Text}%'";
                     break;
@@ -756,16 +766,167 @@ namespace CourseProject
                     (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"description LIKE '%{textBox2.Text}%'";
                     break;
                 case 1:
-                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"passport_number LIKE '%{textBox2.Text}%'";
-                    break;
-                case 2:
-                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"passport_number LIKE '%{textBox2.Text}%'";
-                    break;
+                case 2:    
                 case 3:
                     (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"passport_number LIKE '%{textBox2.Text}%'";
                     break;
                 case 4:
                     (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"text LIKE '%{textBox2.Text}%'";
+                    break;
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0:
+                    if (checkBox3.Checked)
+                    {
+                        if (checkBox2.Checked)
+                        {
+                            DateTime dt1 = DateTime.Now;
+                            dt1 = dt1.AddYears(-1);
+                            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"criminals_id IS NULL AND creation >= '{dt1}'";
+                        }
+                        else
+                        {
+                            DateTime dt1 = DateTime.Now;
+                            dt1 = dt1.AddYears(-1);
+                            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"creation >= '{dt1}'";
+                        }
+                    }
+                    else
+                    {
+                        if (checkBox2.Checked)
+                        {
+                            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"criminals_id IS NULL";
+                        }
+                        else
+                        {
+                            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = String.Empty;
+                        }
+                    }
+                    break;
+                     case 1:
+                     case 2:
+                     case 3:
+                    if (checkBox2.Checked)
+                    {
+                        (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"number_of_cases >= 3";
+                    }
+                    else
+                    {
+                        (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = String.Empty;
+                    }
+                         break;
+            }
+        }
+
+  
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+
+             switch (comboBox1.SelectedIndex)
+             {
+                 case 0:
+                    if (checkBox2.Checked)
+                    {
+                        if (checkBox3.Checked)
+                        {
+                            DateTime dt1 = DateTime.Now;
+                            dt1 = dt1.AddYears(-1);
+                            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"criminals_id IS NULL AND creation >= '{dt1}'";
+                        }
+                        else
+                        {
+                            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"criminals_id IS NULL";
+                        }
+                    }
+                    else
+                    {
+                        if (checkBox3.Checked)
+                        {
+                            DateTime dt1 = DateTime.Now;
+                            dt1 = dt1.AddYears(-1);
+                            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"creation >= '{dt1}'";
+                        }
+                        else
+                        {
+                            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = String.Empty;
+                        }
+                    }
+                        break;
+             } 
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            switch (comboBox3.SelectedIndex)
+            {
+                case 0:
+                    comboBox1.SelectedIndex = 0;
+                    break;
+                case 1:
+                    SqlDataAdapter cases = new  SqlDataAdapter("SELECT cases.id,cases.description,staff.last_name,citizens.last_name,criminals.last_name FROM CASES,Staff,citizens, criminals WHERE cases.citizen_id = citizens.id AND cases.criminals_id = criminals.id AND cases.staff_id = staff.id", sqlConnection);
+                    DataSet casesDs = new DataSet();
+                    cases.Fill(casesDs);
+                    dataGridView1.DataSource = casesDs.Tables[0];
+                    break;
+                case 2:
+                    SqlDataAdapter articles = new SqlDataAdapter("SELECT articles.name,COUNT(cases.id) as Заяв FROM CASES,articles WHERE cases.articles_id = articles.id GROUP BY articles.name", sqlConnection);
+                    DataSet articlesDs = new DataSet();
+                    articles.Fill(articlesDs);
+                    dataGridView1.DataSource = articlesDs.Tables[0];
+                    break;
+                case 3:
+                    SqlDataAdapter account = new SqlDataAdapter("SELECT staff.last_name,COUNT(criminals.id) as Злочинців FROM staff,criminals WHERE criminals.staff_id = staff_id GROUP BY staff.last_name", sqlConnection);
+                    DataSet accountDs = new DataSet();
+                    account.Fill(accountDs);
+                    dataGridView1.DataSource = accountDs.Tables[0];
+                    break;
+                case 4:
+                    SqlDataAdapter mails = new SqlDataAdapter("SELECT staff.last_name,staff.email, criminals.last_name, criminals.email FROM staff,criminals WHERE criminals.staff_id = staff.id", sqlConnection);
+                    DataSet mailsDs = new DataSet();
+                    mails.Fill(mailsDs);
+                    dataGridView1.DataSource = mailsDs.Tables[0];
+                    break;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0:
+                    docID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                    SqlCommand selectLAST_NAMECommand = new SqlCommand($"SELECT last_name FROM citizens WHERE id = (SELECT citizen_id FROM cases WHERE id = {MainForm.docID})", sqlConnection);
+                    SqlCommand selectFIRST_NAMECommand = new SqlCommand($"SELECT first_name FROM citizens WHERE id = (SELECT citizen_id FROM cases WHERE id = {MainForm.docID})", sqlConnection);
+                    SqlCommand selectSURNAMECommand = new SqlCommand($"SELECT surname FROM citizens WHERE id = (SELECT citizen_id FROM cases WHERE id = {MainForm.docID})", sqlConnection);
+                    SqlCommand selectADRESSCommand = new SqlCommand($"SELECT adress FROM citizens WHERE id = (SELECT citizen_id FROM cases WHERE id = {MainForm.docID})", sqlConnection);
+                    SqlCommand selectEMAILCommand = new SqlCommand($"SELECT email FROM citizens WHERE id = (SELECT citizen_id FROM cases WHERE id = {MainForm.docID})", sqlConnection);
+                    SqlCommand selectPHONE_NUMBERCommand = new SqlCommand($"SELECT phone_number FROM citizens WHERE id = (SELECT citizen_id FROM cases WHERE id = {MainForm.docID})", sqlConnection);
+                    SqlCommand selectCreationCommand = new SqlCommand($"SELECT creation FROM cases WHERE id = {MainForm.docID}", sqlConnection);
+                    SqlCommand selectArticleCommand = new SqlCommand($"SELECT name FROM articles WHERE id = (SELECT articles_id FROM cases WHERE id = {MainForm.docID})", sqlConnection);
+                    var creation = (DateTime)selectCreationCommand.ExecuteScalar();
+
+
+                    var helper = new WordHelper("caseDoc.docx");
+
+                    var items = new Dictionary<string, string>
+                    {
+                        { "<LAST_NAME>", (string)selectLAST_NAMECommand.ExecuteScalar()},
+                        { "<FIRST_NAME>", (string)selectFIRST_NAMECommand.ExecuteScalar()},
+                        { "<SURNAME>", (string)selectSURNAMECommand.ExecuteScalar()},
+                        { "<ADRESS>", (string)selectADRESSCommand.ExecuteScalar()},
+                        { "<EMAIL>", (string)selectEMAILCommand.ExecuteScalar()},
+                        { "<PHONE_NUMBER>", (string)selectPHONE_NUMBERCommand.ExecuteScalar()},
+                        { "<CREATION>", creation.ToLongDateString()},
+                        { "<ARTICLE_NAME>", (string)selectArticleCommand.ExecuteScalar()}
+                    };
+                    helper.Process(items);
                     break;
             }
         }
