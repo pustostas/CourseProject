@@ -54,6 +54,7 @@
             this.courseProjectDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.casesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.casesTableAdapter = new CourseProject.CourseProjectDataSetTableAdapters.casesTableAdapter();
+            this.button3 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -106,15 +107,17 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 4;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.99813F));
+            this.tableLayoutPanel2.ColumnCount = 5;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0005F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0005F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0005F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.9985F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.Controls.Add(this.updateButton, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.deleteButton, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.button1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.button2, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.button3, 4, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 637);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -128,9 +131,9 @@
             this.updateButton.AutoSize = true;
             this.updateButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.updateButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.updateButton.Location = new System.Drawing.Point(721, 3);
+            this.updateButton.Location = new System.Drawing.Point(577, 3);
             this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(353, 57);
+            this.updateButton.Size = new System.Drawing.Size(281, 57);
             this.updateButton.TabIndex = 4;
             this.updateButton.Text = "Редагувати";
             this.updateButton.UseVisualStyleBackColor = true;
@@ -141,9 +144,9 @@
             this.deleteButton.AutoSize = true;
             this.deleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.deleteButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.deleteButton.Location = new System.Drawing.Point(362, 3);
+            this.deleteButton.Location = new System.Drawing.Point(290, 3);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(353, 57);
+            this.deleteButton.Size = new System.Drawing.Size(281, 57);
             this.deleteButton.TabIndex = 3;
             this.deleteButton.Text = "Видалити";
             this.deleteButton.UseVisualStyleBackColor = true;
@@ -156,7 +159,7 @@
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.Location = new System.Drawing.Point(3, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(353, 57);
+            this.button1.Size = new System.Drawing.Size(281, 57);
             this.button1.TabIndex = 5;
             this.button1.Text = "Додати";
             this.button1.UseVisualStyleBackColor = true;
@@ -166,9 +169,9 @@
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button2.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(1080, 3);
+            this.button2.Location = new System.Drawing.Point(864, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(356, 57);
+            this.button2.Size = new System.Drawing.Size(281, 57);
             this.button2.TabIndex = 6;
             this.button2.Text = "Сформувати заяву";
             this.button2.UseVisualStyleBackColor = true;
@@ -369,6 +372,18 @@
             // 
             this.casesTableAdapter.ClearBeforeFill = true;
             // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button3.Location = new System.Drawing.Point(1151, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(285, 57);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Експортувати в Excel";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -420,6 +435,7 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

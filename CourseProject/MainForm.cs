@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
+using ClosedXML;
+using DocumentFormat.OpenXml;
+using ExcelNumberFormat;
+using System.Xml;
+using ClosedXML.Excel;
 
 namespace CourseProject
 {
@@ -870,7 +875,7 @@ namespace CourseProject
                     comboBox1.SelectedIndex = 0;
                     break;
                 case 1:
-                    SqlDataAdapter cases = new  SqlDataAdapter("SELECT cases.id,cases.description,staff.last_name,citizens.last_name,criminals.last_name FROM CASES,Staff,citizens, criminals WHERE cases.citizen_id = citizens.id AND cases.criminals_id = criminals.id AND cases.staff_id = staff.id", sqlConnection);
+                    SqlDataAdapter cases = new  SqlDataAdapter("SELECT cases.id,cases.description,staff.last_name as поліцейський,citizens.last_name as громадянин,criminals.last_name as злочинець FROM CASES,Staff,citizens, criminals WHERE cases.citizen_id = citizens.id AND cases.criminals_id = criminals.id AND cases.staff_id = staff.id", sqlConnection);
                     DataSet casesDs = new DataSet();
                     cases.Fill(casesDs);
                     dataGridView1.DataSource = casesDs.Tables[0];
@@ -882,13 +887,13 @@ namespace CourseProject
                     dataGridView1.DataSource = articlesDs.Tables[0];
                     break;
                 case 3:
-                    SqlDataAdapter account = new SqlDataAdapter("SELECT staff.last_name,COUNT(criminals.id) as Злочинців FROM staff,criminals WHERE criminals.staff_id = staff_id GROUP BY staff.last_name", sqlConnection);
+                    SqlDataAdapter account = new SqlDataAdapter("SELECT staff.last_name as поліцейський ,COUNT(criminals.id) as Злочинців FROM staff,criminals WHERE criminals.staff_id = staff_id GROUP BY staff.last_name", sqlConnection);
                     DataSet accountDs = new DataSet();
                     account.Fill(accountDs);
                     dataGridView1.DataSource = accountDs.Tables[0];
                     break;
                 case 4:
-                    SqlDataAdapter mails = new SqlDataAdapter("SELECT staff.last_name,staff.email, criminals.last_name, criminals.email FROM staff,criminals WHERE criminals.staff_id = staff.id", sqlConnection);
+                    SqlDataAdapter mails = new SqlDataAdapter("SELECT staff.last_name as поліцейський,staff.email, criminals.last_name as злочинець, criminals.email FROM staff,criminals WHERE criminals.staff_id = staff.id", sqlConnection);
                     DataSet mailsDs = new DataSet();
                     mails.Fill(mailsDs);
                     dataGridView1.DataSource = mailsDs.Tables[0];
@@ -928,6 +933,32 @@ namespace CourseProject
                     };
                     helper.Process(items);
                     break;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DataTable appData = (DataTable)dataGridView1.DataSource;
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
+            {
+                
+                if(sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using(XLWorkbook workbook = new XLWorkbook())
+                        {
+                            workbook.Worksheets.Add(appData.Copy());
+                            workbook.SaveAs(sfd.FileName);
+
+                        }
+                        MessageBox.Show("Ви зберегли дані в Excel файл.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
     }
