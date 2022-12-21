@@ -64,6 +64,16 @@ namespace CourseProject
                 {
 
                 }
+                try
+                {
+                    SqlCommand selectMeetCommand = new SqlCommand($"SELECT meet_time FROM criminals WHERE id = {MainForm.updateID}", sqlConnection);
+                    textBox8.Text = selectMeetCommand.ExecuteScalar().ToString();
+                    
+                }
+                catch
+                {
+
+                }
             }
         }
 
@@ -71,7 +81,9 @@ namespace CourseProject
         {
             if (MainForm.isEdit)
             {
-                SqlCommand insertCommand = new SqlCommand($"UPDATE Criminals SET last_name = @last_name, first_name = @first_name, surname = @surname, description = @description, adress = @adress, passport_number = @passport_number, phone_number = @phone_number, email = @email, birth = @birth, in_search = @in_search, staff_id = @staff_id WHERE id = {MainForm.updateID}", sqlConnection);
+                DateTime? myDate = null;
+
+                SqlCommand insertCommand = new SqlCommand($"UPDATE Criminals SET last_name = @last_name, first_name = @first_name, surname = @surname, description = @description, adress = @adress, passport_number = @passport_number, phone_number = @phone_number, email = @email, birth = @birth, in_search = @in_search, staff_id = @staff_id, meet_time = @meet_time WHERE id = {MainForm.updateID}", sqlConnection);
                 insertCommand.Parameters.AddWithValue("last_name", textBox1.Text);
                 insertCommand.Parameters.AddWithValue("first_name", textBox2.Text);
                 insertCommand.Parameters.AddWithValue("surname", textBox3.Text);
@@ -82,13 +94,40 @@ namespace CourseProject
                 insertCommand.Parameters.AddWithValue("email", textBox7.Text);
                 insertCommand.Parameters.AddWithValue("birth", dateTimePicker1.Value);
                 insertCommand.Parameters.AddWithValue("in_search", checkBox1.Checked);
-                insertCommand.Parameters.AddWithValue("staff_id", Convert.ToInt32(comboBox1.SelectedValue));
+                if (checkBox2.Checked)
+                {
+                    insertCommand.Parameters.AddWithValue("staff_id", Convert.ToInt32(comboBox1.SelectedValue));
+                }
+                else
+                {
+                    insertCommand.Parameters.AddWithValue("staff_id", DBNull.Value);
+                }
+                
+                try
+                {
+                    myDate = DateTime.ParseExact(textBox8.Text, "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                }
+                catch
+                {
+                    
+                }
+                if(myDate != null)
+                {
+                    insertCommand.Parameters.AddWithValue("meet_time", myDate);
+                }
+                else
+                {
+                    insertCommand.Parameters.AddWithValue("meet_time", DBNull.Value);
+                }
+
+
                 insertCommand.ExecuteNonQuery();
                 Close();
             }
             else
             {
-                SqlCommand insertCommand = new SqlCommand($"INSERT INTO Criminals (last_name, first_name, surname, description, adress, passport_number, phone_number, email, birth, in_search, staff_id) VALUES(@last_name, @first_name, @surname, @description, @adress, @passport_number, @phone_number, @email, @birth, @in_search, @staff_id)", sqlConnection);
+                DateTime? myDate = null;
+                SqlCommand insertCommand = new SqlCommand($"INSERT INTO Criminals (last_name, first_name, surname, description, adress, passport_number, phone_number, email, birth, in_search, staff_id, meet_time) VALUES(@last_name, @first_name, @surname, @description, @adress, @passport_number, @phone_number, @email, @birth, @in_search, @staff_id, @meet_time)", sqlConnection);
                 insertCommand.Parameters.AddWithValue("last_name", textBox1.Text);
                 insertCommand.Parameters.AddWithValue("first_name", textBox2.Text);
                 insertCommand.Parameters.AddWithValue("surname", textBox3.Text);
@@ -99,7 +138,30 @@ namespace CourseProject
                 insertCommand.Parameters.AddWithValue("email", textBox7.Text);
                 insertCommand.Parameters.AddWithValue("birth", dateTimePicker1.Value);
                 insertCommand.Parameters.AddWithValue("in_search", checkBox1.Checked);
-                insertCommand.Parameters.AddWithValue("staff_id", Convert.ToInt32(comboBox1.SelectedValue));
+                if (checkBox2.Checked)
+                {
+                    insertCommand.Parameters.AddWithValue("staff_id", Convert.ToInt32(comboBox1.SelectedValue));
+                }
+                else
+                {
+                    insertCommand.Parameters.AddWithValue("staff_id", DBNull.Value);
+                }
+                try
+                {
+                    myDate = DateTime.ParseExact(textBox8.Text, "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                }
+                catch
+                {
+
+                }
+                if (myDate != null)
+                {
+                    insertCommand.Parameters.AddWithValue("meet_time", myDate);
+                }
+                else
+                {
+                    insertCommand.Parameters.AddWithValue("meet_time", DBNull.Value);
+                }
                 insertCommand.ExecuteNonQuery();
                 Close();
             }
